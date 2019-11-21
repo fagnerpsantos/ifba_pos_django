@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    {% for chave in chaves %}
+        <div class="card mb-3">
+
+          <div class="card-header {% if chave.status != 2 %}  {% else %} bg-danger {% endif %}">
+            {{ chave.get_status_display }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ chave.nome }}</h5>
+            <p class="card-text">{{ chave.descricao }}</p>
+              <hr>
+            <a href="{% url 'editar_chave' chave.id %}">Alterar chave</a>
+            <a href="{% url 'remover_chave' chave.id%}">Remover chave</a>
+          </div>
+        </div>
+    {% endfor %}
+<a href="{% url 'cadastrar_chave' %}"><input type="button" class="btn btn-primary mb-3" value="Cadastrar Chave"></a>
+{% endblock conteudo %}

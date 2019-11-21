@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block conteudo %}
+<div class="card">
+    <div class="card-header">
+        Tem certeza que deseja remover a chave abaixo?
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Titulo: {{chave.nome}}</h5>
+        <h5 class="card-title">Descrição: {{chave.descricao}}</h5>
+        <h5 class="card-title">Observações: {{chave.observacoes}}</h5>
+        <h5 class="card-title">Status: {{chave.get_status_display}}</h5>
+        <form method="post">
+            {% csrf_token %}
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Voltar</a>
+            <button class="btn btn-danger" type="submit">Remover</button>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}
